@@ -50,9 +50,9 @@ app.get('/', (req, res) => {
 app.post('/urls/', (req, res) => {
   const url_origin = req.body.url_origin
 
-  Url.find({ url_origin: url_origin })
+  Url.find({ url_origin })
     .lean()
-    .then((url) => res.redirect(`/urls/${url[0]._id}`)) 
+    .then((url) => res.redirect(`/urls/${url[0]._id}`))
     .catch(() => {
       Url.create({
         url_origin: url_origin,
@@ -71,6 +71,16 @@ app.get('/urls/:id', (req, res) => {
     .then(url => res.render('show', { url }))
     .catch(error => console.log(error))
 
+})
+
+// 路由: 在瀏覽器能使用短網址
+app.get('/:url_shorten', (req, res) => {
+  const url_shorten = req.params.url_shorten
+
+  Url.find({ url_shorten })
+    .lean()
+    .then(url => res.redirect(url[0].url_origin))
+    .catch(error => console.log(error))
 })
 // 連線狀態
 app.listen(port, () => {
