@@ -12,14 +12,14 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">URL Shortener</a>
     </div>
   </nav>
 
   <div class="container mt-3" id="main-div">
-    <p class="d-flex justify-content-center">URL Shortener</p>
+    <h1 class="d-flex justify-content-center my-5">URL Shortener</h1>
     <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
       alt="URL SHORTENER">
   </div>
@@ -32,7 +32,7 @@
   <script>
     function copyToClipboard() {
       const urlShorten = document.querySelector("#url_shorten")
-      const urlValue = urlShorten.value
+      const urlValue = urlShorten.textContent
       
       navigator.clipboard.writeText(urlValue)
       alert(`已將短網址存到剪貼簿中。(${urlValue})`)
