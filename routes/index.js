@@ -7,4 +7,5 @@ const urls = require('./modules/urls')
 
 router.use('/',home)
 router.use('/urls', urls)
+
 module.exports = router

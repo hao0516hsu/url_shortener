@@ -4,15 +4,17 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const port = 3000
-
+// 載入路由
 const routes = require('./routes/index')
+// 載入Mongoose設定
 require('./config/mongoose')
-
+// Handlebars設定
 app.engine('handlebars', exphbs({ defaultLayout: "main" }))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+// 路由設定
 app.use(routes)
 
 // 連線狀態

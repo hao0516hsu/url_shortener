@@ -4,6 +4,7 @@ const Url = require('../../models/url')
 
 // 用Utility存放函數
 const utility = {
+  // Function: 產生短網址
   shorten_url() {
     const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
     const upperCaseLetters = lowerCaseLetters.toUpperCase()
@@ -17,6 +18,7 @@ const utility = {
     }
     return url_shorten
   },
+  // Function: 產生亂數
   randomIndex(array) {
     const letter = array[Math.floor(Math.random() * array.length)]
     return letter
@@ -29,7 +31,9 @@ router.post('/', (req, res) => {
 
   Url.find({ url_origin })
     .lean()
+    // 輸入相同網址時，直接給既有的短網，不另產生
     .then((url) => res.redirect(`/urls/${url[0]._id}`))
+    // 輸入新的網址時，進到catch，新增資料到DB
     .catch(() => {
       Url.create({
         url_origin: url_origin,
