@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
+const date = new Date()
 
 // 用Utility存放函數
 const utility = {
@@ -28,7 +29,10 @@ const utility = {
 // 路由: Post首頁
 router.post('/', (req, res) => {
   const url_origin = req.body.url_origin
-
+  const ip = req.ip
+  const EXPIRATION = 10
+  // console.log('req=                    ', req.clientIp)
+  // console.log('res=                    ', res)
   Url.find({ url_origin })
     .lean()
     // 輸入相同網址時，直接給既有的短網，不另產生
@@ -37,7 +41,10 @@ router.post('/', (req, res) => {
     .catch(() => {
       Url.create({
         url_origin: url_origin,
-        url_shorten: utility.shorten_url()
+        url_shorten: utility.shorten_url(),
+        ip,
+        created_date: new Date(),
+        expiration_date: new Date(date.setDate(date.getDate() + EXPIRATION))
       })
         .then((url) => res.redirect(`/urls/${url._id}`))
     })

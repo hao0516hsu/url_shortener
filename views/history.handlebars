@@ -1,0 +1,26 @@
+<div id="history-div">
+  <h3>Shorten History</h3>
+
+  <table class="table" id="history-table">
+    <thead>
+      <tr>
+        <th scope="col" width="5%">#</th>
+        <th scope="col" width="45%">Origin URL</th>
+        <th scope="col" width="20%">Shorten URL</th>
+        <th scope="col" width="5%"></th>
+        <th scope="col" width="25%">Expiration Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each historyUrl}}
+      <tr>
+        <td scope="row">{{getIndex @index}}</td>
+        <td><a href="{{this.url_origin}}">{{this.url_origin}}</a></td>
+        <td> <a href="{{../fullhost}}/{{this.url_shorten}}">{{../fullhost}}/{{this.url_shorten}}</a> </td>
+        <td> <i class="fa-solid fa-copy fa-lg"></i> </td>
+        <td>{{getDate this.expiration_date}} ({{relativeTimeFromNow this.expiration_date}})</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

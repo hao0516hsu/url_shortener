@@ -50,3 +50,29 @@ body {
 #copy-button {
   width: 100px;
 }
+
+#history-div {
+  margin: 2% auto;
+  width: 85%
+}
+
+#history-table {
+  table-layout: fixed;
+  margin: 30px 0 0 0;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  vertical-align:middle;
+}
+
+.fa-copy {
+  color: #61677A;
+}
+
+.fa-copy:hover {
+  color: #9EDDFF;
+  cursor: pointer;
+}

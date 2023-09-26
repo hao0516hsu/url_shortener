@@ -1,5 +1,5 @@
 # 縮網址
-![image](public/stylesheets/url_shortener.png)
+![image](public/images/url_shortener.png)
 ## 功能
 + 透過此網頁，使用者能夠一鍵將冗長的網址轉換成縮網址，有效將版面變得更簡潔！
 

@@ -8,6 +8,18 @@ const urlSchema = new Schema({
   },
   url_shorten: {
     type: String
+  },
+  ip: {
+    type: String,
+    required: true
+  },
+  created_date: {
+    type: Date,
+    required: true
+  },
+  expiration_date: {
+    type: Date,
+    required: true
   }
 })
 
