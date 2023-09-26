@@ -5,6 +5,19 @@ body {
   background-color: #f6f7f8;
 }
 
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-left: 7%;
+  overflow-y: hidden;
+  background-color: #419197;
+}
+#nav-outerdiv{
+  height: 70px;
+  background-color: #419197;
+}
+
 #main-div {
   margin: 0 auto;
   max-width: 300px;
@@ -65,7 +78,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .fa-copy {

@@ -1,49 +1,49 @@
-# 縮網址
-![image](public/images/url_shortener.png)
-## 功能
-+ 透過此網頁，使用者能夠一鍵將冗長的網址轉換成縮網址，有效將版面變得更簡潔！
+# URL Shortener－縮網址
+> 一鍵轉換成縮網址，讓版面變得更簡潔！
 
+![image](public/images/url_shortener.png)
+
+## 功能介紹
+1. Home頁籤：使用者能進行縮網址的轉換。
+2. History頁籤：使用者能查看歷史紀錄，如原始網址、縮網址及有效時間等。
+3. Trend頁籤：**施工中。**
 
 ## 環境建置與需求
 1. Node.js
-2. npm(Node Package Manager)
-3. Express 
-4. Express-handlebars 
-5. Nodemon
-6. MongoDB
-7. Dotenv
+2. MongoDB
+3. 環境檔(.env)
 
 ## 專案安裝與執行步驟
-1. 請先確認「環境建置與需求」第1點及第2點提及的程式皆已安裝。
-2. 將此專案clone到本地。
-3. 開啟終端機，在專案資料夾執行：
+1. 將此專案clone到本地。
+2. 開啟終端機，在專案資料夾執行：
+```bash
+cd [filePath]  # [filePath]為專案資料夾的路徑
+npm init -y
 ```
-cd file path  #專案資料夾路徑
-npm init -y 
-```
-4. 接著在終端機安裝「環境建置與需求」第3點～第7點的套件：
-```
+3. 在終端機安裝套件(請見**package.json**的`dependencies`和`devDependencies`)：
+```bash
+# 安裝dependencies的套件
+# 以"express": "^4.17.1"為例，執行
 npm install express@4.17.1
-npm install express-nodemon@3.0.0
-npm install body-parser@1.20.2
-npm install express-handlebars@4.0.2
-npm install mongoose@5.13.17
-npm install -g nodemon 
-npm install dotenv -D
 ```
-5. 在目標資料夾新增名稱為**.env**的檔案，並將自己的MongoDB URI貼到內文中。
+```bash
+# 安裝devDependencies的套件
+# 以"dotenv": "^16.0.3"為例，執行
+npm install -D dotenv@16.0.3
 ```
-MONGODBURI=<您的URI>
+4. 環境檔－在目標資料夾新增副檔名為**env**的檔案，設定DB連線。
+私密資訊皆紀錄在**env.example**。
+```javascript
+// .env的內文
+MONGODB_URI=[yourSecret] // [yourSecret]為您的私密資訊
 ```
-
-6. 在終端機啟動伺服器。
-```
+5. 在終端機啟動伺服器，成功或失敗皆會有通知訊息。
+```bash
+# 啟動方法1
 npm run start (node app.js)
+```
+```bash
+# 啟動方法2
 npm run dev (nodemon app.js)
 ```
-7. 在瀏覽器輸入http://localhost:3000，即可連線。
-
-8. 將json資料載入到資料庫。
-```
-npm run seed
-```
+6. 在瀏覽器輸入http://localhost:3000 ，即可連線。

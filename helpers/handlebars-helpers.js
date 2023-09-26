@@ -10,5 +10,11 @@ module.exports = {
   getIndex: function (value, options) {
     return parseInt(value) + 1;
   },
-  getDate: a => dayjs(a).format('YYYY/MM/DD')
+  getDate: dataDate => dayjs(dataDate).format('YYYY/MM/DD'),
+  cutString: str => {
+    if (str.length > 70) {
+      str = str.slice(0, 70).trim().concat('...')
+    }
+    return str
+  }
 }

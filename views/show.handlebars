@@ -3,8 +3,8 @@
 <div class="my-3" id="url-form">
   <div id="url-shorten-div"> 
     <p class="fs-4 fw-bold">Success! Please use this link:</p>
-    <a href="http://localhost:3000/{{url.url_shorten}}" id="url_shorten" class="fw-bold text-decoration-none fs-5">http://localhost:3000/{{url.url_shorten}}</a>
+    <a href="http://localhost:3000/{{url.url_shorten}} target="_blank"" id="url-shorten" class="fw-bold text-decoration-none fs-5">http://localhost:3000/{{url.url_shorten}}</a>
   {{!-- http://your-project-name.herokuapp.com/{{url.url_shorten}} --}}
   </div>
-  <button type="submit" class="btn btn-primary btn-lg mt-3 rounded-0" id="copy-button" onclick="copyToClipboard()">Copy</button>
+  <button type="submit" class="btn btn-primary btn-lg mt-3 rounded-0" id="copy-button" >Copy</button>
 </div>
