@@ -4,7 +4,7 @@
 ![image](public/images/url_shortener.png)
 
 ## 功能介紹
-1. Home頁籤：使用者能進行縮網址的轉換。
+1. Home頁籤：使用者能進行縮網址的轉換，並取得QR Code。
 2. History頁籤：使用者能查看歷史紀錄，如原始網址、縮網址及有效時間等。
 3. Trend頁籤：**施工中。**
 
@@ -47,3 +47,10 @@ npm run start (node app.js)
 npm run dev (nodemon app.js)
 ```
 6. 在瀏覽器輸入http://localhost:3000 ，即可連線。
+
+## 相關畫面
+- 取得短網址畫面
+![image](public/images/get_shorten.png)
+
+- 查看歷史畫面
+![image](public/images/history.png)

@@ -2,6 +2,7 @@ const QRCode = require('qrcode')
 
 const Url = require('../models/url')
 const { shorten_url } = require('../helpers/url-helpers')
+const { getOffset, getPagination } = require('../helpers/pagination-helper')
 const date = new Date()
 
 const urlController = {
@@ -14,13 +15,34 @@ const urlController = {
     const pathName = req.route.path
     const fullhost = req.protocol + '://' + req.headers.host
     const ip = req.ip
+    const DEFAULT_LIMIT = 10
+    const page = Number(req.query.page) || 1
+    const limit = Number(req.query.limit) || DEFAULT_LIMIT
+    const offset = getOffset(limit, page)
 
-    Url.find({
-      ip,
-      expiration_date: { $gte: new Date() }
-    })
-      .lean()
-      .then(historyUrl => res.render('history', { pathName, historyUrl, fullhost }))
+    Promise.all([
+      Url.find({
+        ip,
+        expiration_date: { $gte: new Date() }
+      })
+        .skip(offset)
+        .limit(limit)
+        .lean()
+      , Url.countDocuments({
+        ip,
+        expiration_date: { $gte: new Date() }
+      })
+        .lean()
+    ])
+      .then(([historyUrl, cnt]) => {
+        res.render('history', {
+          pathName,
+          historyUrl,
+          fullhost,
+          pagination: getPagination(limit, page, cnt),
+          page
+        })
+      })
       .catch(err => console.log(err))
   },
   getTrend: (req, res) => {
@@ -82,7 +104,7 @@ const urlController = {
     Url.findById(id)
       .lean()
       .then(url => {
-        const shortenURL = fullhost+url.url_shorten
+        const shortenURL = fullhost + url.url_shorten
         QRCode.toDataURL(shortenURL, opts, (err, qrCode) => {
           res.render('show', { url, qrCode })
         })

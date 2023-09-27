@@ -7,8 +7,8 @@ module.exports = {
     return a === b ? options.fn(this) : options.inverse(this)
   },
   relativeTimeFromNow: a => dayjs(a).fromNow(),
-  getIndex: function (value, options) {
-    return parseInt(value) + 1;
+  getIndex: function (value, page, options) {
+    return (parseInt(page) - 1) * 10 + parseInt(value) + 1;
   },
   getDate: dataDate => dayjs(dataDate).format('YYYY/MM/DD'),
   cutString: str => {
