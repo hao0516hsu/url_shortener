@@ -16,7 +16,8 @@
     "dayjs": "^1.10.6",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.2",
-    "mongoose": "^5.13.17"
+    "mongoose": "^5.13.17",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
     "dotenv": "^16.0.3"

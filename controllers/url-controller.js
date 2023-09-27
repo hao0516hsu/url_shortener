@@ -1,3 +1,5 @@
+const QRCode = require('qrcode')
+
 const Url = require('../models/url')
 const { shorten_url } = require('../helpers/url-helpers')
 const date = new Date()
@@ -64,10 +66,27 @@ const urlController = {
   },
   getURL: (req, res) => {
     const id = req.params.id
+    const fullhost = req.protocol + '://' + req.headers.host + '/'
+    // QR Code 設定
+    const opts = {
+      errorCorrectionLevel: 'H',
+      type: 'image/jpeg',
+      margin: 2,
+      scale: 4,
+      color: {
+        dark: "#191717",
+        light: "#F6F7F8"
+      }
+    }
 
     Url.findById(id)
       .lean()
-      .then(url => res.render('show', { url }))
+      .then(url => {
+        const shortenURL = fullhost+url.url_shorten
+        QRCode.toDataURL(shortenURL, opts, (err, qrCode) => {
+          res.render('show', { url, qrCode })
+        })
+      })
       .catch(error => console.log(error))
 
   }
