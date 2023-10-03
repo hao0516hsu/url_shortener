@@ -9,9 +9,9 @@ const urlSchema = new Schema({
   url_shorten: {
     type: String
   },
-  ip: {
-    type: String,
-    required: true
+  click_time: {
+    type: Number,
+    default: 0
   },
   created_date: {
     type: Date,
