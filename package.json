@@ -13,10 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "dayjs": "^1.10.6",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.2",
+    "express-session": "^1.17.1",
     "mongoose": "^5.13.17",
     "qrcode": "^1.5.3"
   },

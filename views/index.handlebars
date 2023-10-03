@@ -2,9 +2,10 @@
 
 <div id="url-div">
   <form action="/urls" method="POST" id="url-form">
-  {{!-- 用required避免送出空白網址 --}}
+    {{!-- 用required避免送出空白網址 --}}
     <input type="url" class="form-control" id="input-url-origin" placeholder="Input URL here" name="url_origin"
       required>
-    <button type="submit" class="btn btn-outline-primary btn-lg rounded-0" id="shorten-button">Shorten</button>
+    {{> messages}}
+    <button type="submit" class="btn btn-outline-primary btn-md" id="shorten-button">Shorten</button>
   </form>
 </div>
