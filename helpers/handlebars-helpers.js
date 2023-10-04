@@ -11,6 +11,7 @@ module.exports = {
     return (parseInt(page) - 1) * 10 + parseInt(value) + 1;
   },
   getDate: dataDate => dayjs(dataDate).format('YYYY/MM/DD'),
+  getDatetime: dataDate => dayjs(dataDate).format('YYYY/MM/DD HH:mm:ss'),
   cutString: str => {
     if (str.length > 70) {
       str = str.slice(0, 70).trim().concat('...')

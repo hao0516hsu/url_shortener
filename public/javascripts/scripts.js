@@ -11,10 +11,9 @@ if (copyButton) {
     const urlValue = urlShorten.textContent
 
     navigator.clipboard.writeText(urlValue)
-    alert(`已將短網址存到剪貼簿中。(${urlValue})`)
+    alert(`已將短網址存到剪貼簿中。${urlValue}`)
   })
 }
-
 
 // History頁面的複製
 if (copyIcons.length) {

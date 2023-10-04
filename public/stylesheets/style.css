@@ -50,12 +50,6 @@ main {
   align-items: center;
 }
 
-#url-shorten-div {
-  margin-top: 60px;
-  margin-bottom: 15px;
-  padding: 0;
-}
-
 .form-control {
   width: 550px;
 }
@@ -70,28 +64,68 @@ main {
   width: 200px;
 }
 
+/* 短網址(show) 頁面 */
+#url-shorten-div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 30%;
+  margin-top: 60px;
+  margin-bottom: 15px;
+  padding: 0;
+}
+
 #copy-button {
   width: 100px;
 }
 
+.note-expir {
+  margin-top: 2%;
+  font-weight: bold;
+  font-size:large ;
+  color: #4682A9;
+}
+
+/* History 頁面設定 */
 #history-div {
   margin: 3% auto;
   width: 85%;
   height: 80%;
 }
 
-.text-href {
-  font-size: 100%;
+/* 複製圖示 */
+.fa-copy {
+  color: #96B6C5;
 }
 
-.link-text {
-  display: inline-block;
+.fa-copy:hover {
+  color: #9EDDFF;
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.5s ease 0s;
 }
+
+/* 分頁 */
+#pagination {
+  margin: 0 auto;
+}
+
+/* 超連結 設定 */
+.text-href {
+  font-size: 100%;
+  text-decoration: none;
+}
+
 .text-href:hover .link-text {
-  color: #FFFBE9;
-  background-color: #E3CAA5;
+  padding: 0.5% 2%;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: bold;
+  color: #FEFCF3;
+  background-color: #CDBBA7;
   transform: scale(1.1);
-  transition:all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
 }
 
 /* table 設定 */
@@ -120,9 +154,17 @@ table tr:hover {
   background-color: #FFE569;
 }
 
+#trend-table tr:nth-child(1):hover td {
+  background-color: #E9B824;
+}
+
 /* 第二名 */
 #trend-table tr:nth-child(2) td {
   background-color: #ADC4CE;
+}
+
+#trend-table tr:nth-child(2):hover td {
+  background-color: #86A3B8;
 }
 
 /* 第三名 */
@@ -130,19 +172,8 @@ table tr:hover {
   background-color: #BCA37F;
 }
 
-/* 複製圖示 */
-.fa-copy {
-  color: #61677A;
-}
-
-.fa-copy:hover {
-  color: #9EDDFF;
-  cursor: pointer;
-}
-
-/* 分頁 */
-#pagination {
-  margin: 0 auto;
+#trend-table tr:nth-child(3):hover td {
+  background-color: #977547;
 }
 
 /* Trend設定 */

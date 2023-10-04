@@ -6,10 +6,10 @@
     <a href="http://localhost:3000/{{url.url_shorten}}" target="_blank" id="url-shorten"
       class="fw-bold text-decoration-none fs-5 text-href">
       <span class="link-text">
-        http://localhost:3000/{{url.url_shorten}}
+        {{fullhost}}{{url.url_shorten}}
       </span>
     </a>
-    {{!-- http://your-project-name.herokuapp.com/{{url.url_shorten}} --}}
   </div>
-  <button type="submit" class="btn btn-primary btn-lg mt-3 rounded-0" id="copy-button">Copy</button>
+  <button type="submit" class="btn btn-outline-success btn-lg mt-3" id="copy-button">Copy</button>
+  <p class="note-expir">Expiration Date: {{getDatetime url.expiration_date}}</p>
 </div>

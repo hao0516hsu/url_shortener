@@ -35,15 +35,24 @@ const urlController = {
     // 歷史參數
     const historyCookies = req.cookies.historyURL ? req.cookies.historyURL.split('/') : []
 
-    Url.find({
-      url_shorten: { $in: historyCookies },
-      expiration_date: {$gte: new Date()}
-    })
-      .skip(offset)
-      .limit(limit)
-      .lean()
-      .then(historyUrl => {
-        const cnt = historyUrl.length
+    Promise.all([
+      // 查詢符合結果的documents
+      Url.find({
+        url_shorten: { $in: historyCookies },
+        expiration_date: { $gte: new Date() }
+      })
+        .skip(offset)
+        .limit(limit)
+        .lean()
+      ,
+      // 計算符合結果的documents數量
+      Url.find({
+        url_shorten: { $in: historyCookies },
+        expiration_date: { $gte: new Date() }
+      })
+        .countDocuments()
+    ])
+      .then(([historyUrl, cnt]) => {
         res.render('history', {
           pathName,
           historyUrl,
@@ -144,6 +153,7 @@ const urlController = {
   },
   getURL: (req, res) => {
     const id = req.params.id
+    const pathName = req.route.path
     const fullhost = req.protocol + '://' + req.headers.host + '/'
     // QR Code 設定
     const opts = {
@@ -162,11 +172,10 @@ const urlController = {
       .then(url => {
         const shortenURL = fullhost + url.url_shorten
         QRCode.toDataURL(shortenURL, opts, (err, qrCode) => {
-          res.render('show', { url, qrCode })
+          res.render('show', { url, qrCode, pathName,fullhost })
         })
       })
       .catch(error => console.log(error))
-
   }
 }
 

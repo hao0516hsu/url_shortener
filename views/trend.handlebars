@@ -1,12 +1,12 @@
 <div id="trend-column">
   <div id="most-clicks">
-    <h1>最多點擊數</h1>
+    <h3>Highest Click Count</h3>
     <table class="table" id="trend-table">
       <thead>
         <tr>
-          <th scope="col" width="10%">排名</th>
-          <th scope="col" width="60%">短網址</th>
-          <th scope="col" width="30%">點擊次數</th>
+          <th scope="col" width="10%">Rank</th>
+          <th scope="col" width="60%">URL</th>
+          <th scope="col" width="30%">Click Counts</th>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +15,7 @@
           <td scope="row">{{getIndex @index 1}}</td>
           <td> <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank" class="text-href" data-bs-html="true"
               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-              data-bs-title="原始網頁為：<br> <strong>{{this.url_origin}}</strong>">
+              data-bs-title="Origin Url<br> <strong>{{this.url_origin}}</strong>">
               <span class="link-text">
                 {{../fullhost}}/{{this.url_shorten}}
               </span>
@@ -29,13 +29,13 @@
   </div>
 
   <div id="most-days">
-    <h1>存活最久縮網址</h1>
+    <h3>Longest Valid Days</h3>
     <table class="table" id="trend-table">
       <thead>
         <tr>
-          <th scope="col" width="10%">排名</th>
-          <th scope="col" width="60%">短網址</th>
-          <th scope="col" width="30%">存活天數</th>
+          <th scope="col" width="10%">Rank</th>
+          <th scope="col" width="60%">URL</th>
+          <th scope="col" width="30%">Valid Days</th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +45,7 @@
           <td>
             <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank" class="text-href" data-bs-html="true"
               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-              data-bs-title="原始網頁為：<br> <strong>{{this.url_origin}}</strong>">
+              data-bs-title="Origin Url <br> <strong>{{this.url_origin}}</strong>">
               <span class="link-text">
                 {{../fullhost}}/{{this.url_shorten}}
               </span>
