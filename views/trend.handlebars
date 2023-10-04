@@ -1,0 +1,60 @@
+<div id="trend-column">
+  <div id="most-clicks">
+    <h1>最多點擊數</h1>
+    <table class="table" id="trend-table">
+      <thead>
+        <tr>
+          <th scope="col" width="10%">排名</th>
+          <th scope="col" width="60%">短網址</th>
+          <th scope="col" width="30%">點擊次數</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each mostClickUrl}}
+        <tr>
+          <td scope="row">{{getIndex @index 1}}</td>
+          <td> <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank" class="text-href" data-bs-html="true"
+              data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+              data-bs-title="原始網頁為：<br> <strong>{{this.url_origin}}</strong>">
+              <span class="link-text">
+                {{../fullhost}}/{{this.url_shorten}}
+              </span>
+            </a>
+          </td>
+          <td>{{this.click_time}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <div id="most-days">
+    <h1>存活最久縮網址</h1>
+    <table class="table" id="trend-table">
+      <thead>
+        <tr>
+          <th scope="col" width="10%">排名</th>
+          <th scope="col" width="60%">短網址</th>
+          <th scope="col" width="30%">存活天數</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each mostExpirUrl}}
+        <tr>
+          <td scope="row">{{getIndex @index 1}}</td>
+          <td>
+            <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank" class="text-href" data-bs-html="true"
+              data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+              data-bs-title="原始網頁為：<br> <strong>{{this.url_origin}}</strong>">
+              <span class="link-text">
+                {{../fullhost}}/{{this.url_shorten}}
+              </span>
+            </a>
+          </td>
+          <td>{{this.valid_days}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -18,4 +18,11 @@ const randomIndex = array => {
   return letter
 }
 
-module.exports = { shorten_url }  
+const dateDiff = (date1, date2) => {
+  const newDate1 = new Date(date1)
+  const newDate2 = new Date(date2)
+
+  return parseInt(Math.abs(newDate1 - newDate2) / (24 * 60 * 60 * 1000))
+}
+
+module.exports = { shorten_url, dateDiff }  

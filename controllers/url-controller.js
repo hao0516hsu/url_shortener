@@ -1,8 +1,10 @@
 const QRCode = require('qrcode')
 const Url = require('../models/url')
-const { shorten_url } = require('../helpers/url-helpers')
+const { shorten_url, dateDiff } = require('../helpers/url-helpers')
 const { getOffset, getPagination } = require('../helpers/pagination-helper')
 
+// 預設Trend頁面顯示前15名
+const TREND_LIMIT = 15
 // 目前預設短網址只能存活14天
 const EXPIRATION = 14
 // cookie存活30 days
@@ -32,15 +34,16 @@ const urlController = {
     const offset = getOffset(limit, page)
     // 歷史參數
     const historyCookies = req.cookies.historyURL ? req.cookies.historyURL.split('/') : []
-    const cnt = historyCookies.length
 
     Url.find({
-      url_shorten: { $in: historyCookies }
+      url_shorten: { $in: historyCookies },
+      expiration_date: {$gte: new Date()}
     })
       .skip(offset)
       .limit(limit)
       .lean()
       .then(historyUrl => {
+        const cnt = historyUrl.length
         res.render('history', {
           pathName,
           historyUrl,
@@ -53,8 +56,26 @@ const urlController = {
   },
   getTrend: (req, res) => {
     const pathName = req.route.path
-
-    res.render('trend', { pathName })
+    const fullhost = req.protocol + '://' + req.headers.host
+    Promise.all([
+      // 最多點選
+      Url
+        .find({ expiration_date: { $gt: new Date() } })
+        .lean()
+        .sort({ click_time: -1, created_date: 1, url_origin: 1 })
+        .limit(TREND_LIMIT)
+      ,
+      // 存活最久
+      Url
+        .find({ expiration_date: { $gt: new Date() } })
+        .lean()
+        .sort({ valid_days: -1, created_date: 1, url_origin: 1 })
+        .limit(TREND_LIMIT)
+    ])
+      .then(([mostClickUrl, mostExpirUrl]) => {
+        res.render('trend', { fullhost, pathName, mostClickUrl, mostExpirUrl })
+      })
+      .catch(err => console.log(err))
   },
   getShortenURL: (req, res) => {
     // 清掉req.params的預設值'favicon.ico'
@@ -66,7 +87,8 @@ const urlController = {
       .then(shortenUrl => {
         if (!shortenUrl) throw new Error("Short URL is not existed")
         shortenUrl.click_time += 1
-        shortenUrl.expiration_date = new Date(date.setDate(date.getDate() + EXPIRATION))
+        shortenUrl.expiration_date = new Date(date.setDate(date.getDate() + EXPIRATION)).setHours(23, 59, 59, 999)
+        shortenUrl.valid_days = dateDiff(shortenUrl.created_date, shortenUrl.expiration_date)
         return shortenUrl.save()
       })
       .then(url => res.redirect(url.url_origin))
@@ -109,7 +131,7 @@ const urlController = {
           url_origin: url_origin,
           url_shorten: shorten_url(),
           created_date: new Date(),
-          expiration_date: new Date(date.setDate(date.getDate() + EXPIRATION))
+          expiration_date: new Date(date.setDate(date.getDate() + EXPIRATION)).setHours(23, 59, 59, 999)
         })
           .then(newUrl => {
             // 新增資料時，順便新增到cookie

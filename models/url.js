@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const { dateDiff } = require('../helpers/url-helpers')
 
 const urlSchema = new Schema({
   url_origin: {
@@ -20,6 +21,12 @@ const urlSchema = new Schema({
   expiration_date: {
     type: Date,
     required: true
+  },
+  valid_days: {
+    type: Number,
+    default: function () {
+      return dateDiff(this.created_date, this.expiration_date)
+    }
   }
 })
 

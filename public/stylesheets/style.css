@@ -75,22 +75,62 @@ main {
 }
 
 #history-div {
-  margin: 2% auto;
+  margin: 3% auto;
   width: 85%;
   height: 80%;
 }
 
-#history-table {
+.text-href {
+  font-size: 100%;
+}
+
+.link-text {
+  display: inline-block;
+}
+.text-href:hover .link-text {
+  color: #FFFBE9;
+  background-color: #E3CAA5;
+  transform: scale(1.1);
+  transition:all 0.5s ease 0s;
+}
+
+/* table 設定 */
+table {
   table-layout: fixed;
   margin: 30px 0 0 0;
+}
+
+th {
+  text-align: center;
 }
 
 td {
   text-overflow: ellipsis;
   word-wrap: break-word;
   vertical-align: middle;
+  text-align: center;
 }
 
+table tr:hover {
+  background-color: #F1EFEF;
+}
+
+/* 第一名 */
+#trend-table tr:nth-child(1) td {
+  background-color: #FFE569;
+}
+
+/* 第二名 */
+#trend-table tr:nth-child(2) td {
+  background-color: #ADC4CE;
+}
+
+/* 第三名 */
+#trend-table tr:nth-child(3) td {
+  background-color: #BCA37F;
+}
+
+/* 複製圖示 */
 .fa-copy {
   color: #61677A;
 }
@@ -100,6 +140,28 @@ td {
   cursor: pointer;
 }
 
+/* 分頁 */
 #pagination {
   margin: 0 auto;
+}
+
+/* Trend設定 */
+#trend-column {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#most-clicks,
+#most-days {
+  margin-top: 3%;
+  width: 42%;
+}
+
+/* 預覽框 */
+.custom-tooltip.tooltip>.tooltip-inner {
+  text-align: left;
+  max-width: 500px;
+  background-color: #419197;
 }

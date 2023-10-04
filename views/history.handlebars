@@ -15,8 +15,8 @@
       {{#each historyUrl}}
       <tr>
         <td scope="row">{{getIndex @index ../page}}</td>
-        <td><a href="{{this.url_origin}}" target="_blank">{{cutString this.url_origin}}</a></td>
-        <td> <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank">{{../fullhost}}/{{this.url_shorten}}</a>
+        <td><a href="{{this.url_origin}}" target="_blank" class="text-href">{{cutString this.url_origin}}</a></td>
+        <td> <a href="{{../fullhost}}/{{this.url_shorten}}" target="_blank" class="text-href">{{../fullhost}}/{{this.url_shorten}}</a>
         </td>
         <td> <i class="fa-solid fa-copy fa-lg"></i> </td>
         <td>{{getDate this.expiration_date}} ({{relativeTimeFromNow this.expiration_date}})</td>

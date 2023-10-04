@@ -1,6 +1,9 @@
 const copyIcons = document.querySelectorAll('.fa-copy')
 const copyButton = document.querySelector('#copy-button')
 const urlShorten = document.querySelector("#url-shorten")
+// tooltip
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, { 'custom-class': 'custom-tooltip' }))
 
 // 主頁面的複製
 if (copyButton) {
